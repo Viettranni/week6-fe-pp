@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useSignup = function (setIsAuthenticated) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignup = async (email, password) => {
     try {
       const response = await fetch("api/users/signup", {
         method: "POST",
@@ -31,10 +31,10 @@ const useSignup = function (setIsAuthenticated) {
   };
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
+    // email,
+    // setEmail,
+    // password,
+    // setPassword,
     handleSignup,
   };
 };

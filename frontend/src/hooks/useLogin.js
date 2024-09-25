@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 const useLogin = (setIsAuthenticated) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (email, password) => {
     try {
+      console.log(email, password);
       const response = await fetch("/api/users/login", {
         method: "POST",
         headers: {
@@ -16,7 +16,6 @@ const useLogin = (setIsAuthenticated) => {
         },
         body: JSON.stringify({ email, password }),
       });
-
 
       if (response.ok) {
         const user = await response.json();
@@ -32,12 +31,11 @@ const useLogin = (setIsAuthenticated) => {
     }
   };
 
-  
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
+    // email,
+    // setEmail,
+    // password,
+    // setPassword,
     handleLogin,
   };
 };
