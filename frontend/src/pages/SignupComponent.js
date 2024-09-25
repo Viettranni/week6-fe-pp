@@ -5,9 +5,10 @@ const SignupComponent = ({ setIsAuthenticated }) => {
   const { handleSignup } = useSignup(setIsAuthenticated);
   const emailField = useField("email");
   const passwordField = useField("password");
+  const passwordField2 = useField("password");
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleSignup(emailField.value, passwordField.value);
+    handleSignup(emailField.value, passwordField.value, passwordField2.value);
   };
   return (
     <div>
@@ -20,6 +21,10 @@ const SignupComponent = ({ setIsAuthenticated }) => {
         <div>
           <label>Password:</label>
           <input {...passwordField} />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input {...passwordField2} />
         </div>
         <button type="submit">Sign In</button>
       </form>

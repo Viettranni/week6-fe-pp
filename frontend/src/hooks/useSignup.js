@@ -6,24 +6,31 @@ const useSignup = function (setIsAuthenticated) {
   // const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = async (email, password) => {
+  const handleSignup = async (email, password, password2) => {
     try {
-      const response = await fetch("api/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      if (password === password2) {
 
-      if (response.ok) {
-        const user = await response.json();
-        localStorage.setItem("user", JSON.stringify(user));
-        console.log("User signed up successfully!");
-        setIsAuthenticated(true);
-        navigate("/");
-      } else {
-        console.error("Signup failed");
+
+        const response = await fetch("api/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+          const user = await response.json();
+          localStorage.setItem("user", JSON.stringify(user));
+          console.log("User signed up successfully!");
+          setIsAuthenticated(true);
+          navigate("/");
+        } else {
+          console.error("Signup failed");
+        }
+      }
+      else {
+        console.log("Password do not match")
       }
     } catch (error) {
       console.error("Error during signup:", error);
